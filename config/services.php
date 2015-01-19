@@ -2,6 +2,8 @@
 use Acelaya\Controller\UserController;
 use Acelaya\Controller\UserControllerFactory;
 use Acelaya\Middleware\ParamConverterMiddleware;
+use Acelaya\Mvc\RequestAwareInitializer;
+use Acelaya\Mvc\ResponseAwareInitializer;
 use Acelaya\Service\Logger;
 use Acelaya\Service\LoggerFactory;
 use Acelaya\Service\ServiceAbstractFactory;
@@ -26,6 +28,11 @@ return [
 
     'abstract_factories' => [
         ServiceAbstractFactory::class
+    ],
+
+    'initializers' => [
+        RequestAwareInitializer::class,
+        ResponseAwareInitializer::class,
     ],
 
     'aliases' => [
