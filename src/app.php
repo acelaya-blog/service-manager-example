@@ -1,5 +1,6 @@
 <?php
 use Acelaya\Controller\UserController;
+use Acelaya\Middleware\ParamConverterMiddleware;
 use Slim\Slim;
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
@@ -13,13 +14,16 @@ $app->view()->set('app', $app);
 // Register application as a service
 $sm->setService('app', $app);
 
-/** @var UserController $userController */
-$userController = $sm->get('user_controller');
+// Add our middleware
+$app->add($sm->get(ParamConverterMiddleware::class));
 
 $app->get('/', function () use ($app) {
-    $app->render('home.php');
+    $app->render('home.phtml');
 });
-$app->group('/users', function () use ($app, $userController) {
+$app->group('/users', function () use ($app, $sm) {
+    /** @var UserController $userController */
+    $userController = $sm->get('user_controller');
+
     $app->get('/list', [$userController, 'listAction'])
         ->name('users-list');
 });

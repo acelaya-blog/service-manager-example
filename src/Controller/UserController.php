@@ -2,6 +2,8 @@
 namespace Acelaya\Controller;
 
 use Acelaya\Entity\User;
+use Acelaya\Mvc\AbstractController;
+use Acelaya\Service\UserServiceInterface;
 
 /**
  * Class UserController
@@ -10,6 +12,16 @@ use Acelaya\Entity\User;
  */
 class UserController extends AbstractController
 {
+    /**
+     * @var UserServiceInterface
+     */
+    protected $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+
+    }
+
     public function listAction()
     {
 

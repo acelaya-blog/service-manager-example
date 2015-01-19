@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\Controller;
 
+use Acelaya\Service\UserService;
 use Slim\Slim;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -20,8 +21,8 @@ class UserControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /** @var Slim $app */
-        $app = $serviceLocator->get('app');
-        return new UserController($app->request, $app->response);
+        /** @var UserService $userService */
+        $userService = $serviceLocator->get(UserService::class);
+        return new UserController($userService);
     }
 }

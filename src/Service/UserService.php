@@ -1,7 +1,7 @@
 <?php
 namespace Acelaya\Service;
 
-class UserService
+class UserService extends AbstractService implements UserServiceInterface
 {
 
 }
