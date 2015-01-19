@@ -9,11 +9,12 @@
     ],
     "require": {
         "php": ">=5.5",
-        "ext-sqlite": "*",
         "zendframework/zend-servicemanager": "~2.2",
         "slim/slim": "~2.4",
         "doctrine/orm": "~2.4",
-        "psr/log": "~1.0"
+        "psr/log": "~1.0",
+        "zendframework/zend-stdlib": "~2.2",
+        "league/flysystem": "~0.5"
     },
     "autoload": {
         "psr-4": {

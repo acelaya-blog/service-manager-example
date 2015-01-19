@@ -4,9 +4,13 @@ use Acelaya\Controller\UserControllerFactory;
 use Acelaya\Middleware\ParamConverterMiddleware;
 use Acelaya\Mvc\RequestAwareInitializer;
 use Acelaya\Mvc\ResponseAwareInitializer;
+use Acelaya\ORM\EntityManagerFactory;
+use Acelaya\ORM\EntityManagerOptions;
+use Acelaya\ORM\EntityManagerOptionsFactory;
 use Acelaya\Service\Logger;
 use Acelaya\Service\LoggerFactory;
 use Acelaya\Service\ServiceAbstractFactory;
+use Doctrine\ORM\EntityManager;
 
 return [
 
@@ -23,7 +27,9 @@ return [
 
     'factories' => [
         UserController::class => UserControllerFactory::class,
-        Logger::class => LoggerFactory::class
+        Logger::class => LoggerFactory::class,
+        EntityManagerOptions::class => EntityManagerOptionsFactory::class,
+        EntityManager::class => EntityManagerFactory::class
     ],
 
     'abstract_factories' => [

@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\Service;
 
+use League\Flysystem\FilesystemInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -12,6 +13,34 @@ use Psr\Log\LoggerInterface;
  */
 class Logger implements LoggerInterface
 {
+    const LEVEL_EMERGENCY = 'emergency';
+    const LEVEL_ALERT = 'alert';
+    const LEVEL_CRITICAL = 'critical';
+    const LEVEL_ERROR = 'error';
+    const LEVEL_WARNING = 'warning';
+    const LEVEL_NOTICE = 'notice';
+    const LEVEL_INFO = 'info';
+    const LEVEL_DEBUG = 'debug';
+
+    /**
+     * @var FilesystemInterface
+     */
+    protected $filesystem;
+    /**
+     * @var string
+     */
+    protected $filename;
+
+    /**
+     * @param FilesystemInterface $filesystem
+     * @param $filename
+     */
+    public function __construct(FilesystemInterface $filesystem, $filename)
+    {
+        $this->filesystem = $filesystem;
+        $this->filename = $filename;
+    }
+
     /**
      * System is unusable.
      *
@@ -21,7 +50,7 @@ class Logger implements LoggerInterface
      */
     public function emergency($message, array $context = array())
     {
-        // TODO: Implement emergency() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -36,7 +65,7 @@ class Logger implements LoggerInterface
      */
     public function alert($message, array $context = array())
     {
-        // TODO: Implement alert() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -50,7 +79,7 @@ class Logger implements LoggerInterface
      */
     public function critical($message, array $context = array())
     {
-        // TODO: Implement critical() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -63,7 +92,7 @@ class Logger implements LoggerInterface
      */
     public function error($message, array $context = array())
     {
-        // TODO: Implement error() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -78,7 +107,7 @@ class Logger implements LoggerInterface
      */
     public function warning($message, array $context = array())
     {
-        // TODO: Implement warning() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -90,7 +119,7 @@ class Logger implements LoggerInterface
      */
     public function notice($message, array $context = array())
     {
-        // TODO: Implement notice() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -104,7 +133,7 @@ class Logger implements LoggerInterface
      */
     public function info($message, array $context = array())
     {
-        // TODO: Implement info() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -116,7 +145,7 @@ class Logger implements LoggerInterface
      */
     public function debug($message, array $context = array())
     {
-        // TODO: Implement debug() method.
+        $this->log(__FUNCTION__, $message, $context);
     }
 
     /**
@@ -129,6 +158,11 @@ class Logger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        // TODO: Implement log() method.
+        $this->filesystem->put($this->filename, $this->createMessage($level, $message));
+    }
+
+    protected function createMessage($level, $message)
+    {
+        return sprintf('[%s] - %s', $level, $message);
     }
 }

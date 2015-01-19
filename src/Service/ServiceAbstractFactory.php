@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\Service;
 
+use Doctrine\ORM\EntityManager;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -17,7 +18,8 @@ class ServiceAbstractFactory implements AbstractFactoryInterface
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        // TODO: Implement canCreateServiceWithName() method.
+        // This abstract factory can create only objects extinding AbstractService
+        return class_exists($requestedName) && is_subclass_of($requestedName, AbstractService::class);
     }
 
     /**
@@ -30,6 +32,7 @@ class ServiceAbstractFactory implements AbstractFactoryInterface
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        // TODO: Implement createServiceWithName() method.
+        $em = $serviceLocator->get(EntityManager::class);
+        $logger = $serviceLocator->get(Logger::class);
     }
 }
