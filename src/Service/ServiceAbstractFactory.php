@@ -7,7 +7,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class ServiceAbstractFactory implements AbstractFactoryInterface
 {
-
     /**
      * Determine if we can create a service with name
      *
@@ -34,5 +33,7 @@ class ServiceAbstractFactory implements AbstractFactoryInterface
     {
         $em = $serviceLocator->get(EntityManager::class);
         $logger = $serviceLocator->get(Logger::class);
+
+        return new $requestedName($em, $logger);
     }
 }
