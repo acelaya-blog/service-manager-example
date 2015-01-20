@@ -2,6 +2,7 @@
 use Acelaya\Controller\UserController;
 use Acelaya\Controller\UserControllerFactory;
 use Acelaya\Middleware\ParamConverterMiddleware;
+use Acelaya\Mvc\RendererAwareInitializer;
 use Acelaya\Mvc\RequestAwareInitializer;
 use Acelaya\Mvc\ResponseAwareInitializer;
 use Acelaya\ORM\EntityManagerFactory;
@@ -39,6 +40,7 @@ return [
     'initializers' => [
         RequestAwareInitializer::class,
         ResponseAwareInitializer::class,
+        RendererAwareInitializer::class,
     ],
 
     'aliases' => [

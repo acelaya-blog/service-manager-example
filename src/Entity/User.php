@@ -2,6 +2,7 @@
 namespace Acelaya\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\Stdlib\ArraySerializableInterface;
 
 /**
  * Class User
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User
+class User implements ArraySerializableInterface
 {
     /**
      * @var int

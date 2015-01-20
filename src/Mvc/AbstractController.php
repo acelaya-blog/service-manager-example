@@ -3,8 +3,12 @@ namespace Acelaya\Mvc;
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\View;
 
-abstract class AbstractController implements RequestAwareInterface, ResponseAwareInterface
+abstract class AbstractController implements
+    RequestAwareInterface,
+    ResponseAwareInterface,
+    RendererAwareInterface
 {
     /**
      * @var Request
@@ -15,6 +19,11 @@ abstract class AbstractController implements RequestAwareInterface, ResponseAwar
      * @var Response
      */
     protected $response;
+
+    /**
+     * @var View
+     */
+    protected $renderer;
 
     /**
      * @param Request $request
@@ -48,5 +57,22 @@ abstract class AbstractController implements RequestAwareInterface, ResponseAwar
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * @param View $renderer
+     * @return mixed
+     */
+    public function setRenderer(View $renderer)
+    {
+        $this->renderer = $renderer;
+    }
+
+    /**
+     * @return View
+     */
+    public function getRenderer()
+    {
+        return $this->renderer;
     }
 }

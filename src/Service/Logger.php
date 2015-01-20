@@ -2,6 +2,7 @@
 namespace Acelaya\Service;
 
 use League\Flysystem\FilesystemInterface;
+use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -11,17 +12,8 @@ use Psr\Log\LoggerInterface;
  * @author
  * @link
  */
-class Logger implements LoggerInterface
+class Logger extends AbstractLogger
 {
-    const LEVEL_EMERGENCY = 'emergency';
-    const LEVEL_ALERT = 'alert';
-    const LEVEL_CRITICAL = 'critical';
-    const LEVEL_ERROR = 'error';
-    const LEVEL_WARNING = 'warning';
-    const LEVEL_NOTICE = 'notice';
-    const LEVEL_INFO = 'info';
-    const LEVEL_DEBUG = 'debug';
-
     /**
      * @var FilesystemInterface
      */
@@ -42,113 +34,6 @@ class Logger implements LoggerInterface
     }
 
     /**
-     * System is unusable.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function emergency($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Action must be taken immediately.
-     *
-     * Example: Entire website down, database unavailable, etc. This should
-     * trigger the SMS alerts and wake you up.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function alert($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Critical conditions.
-     *
-     * Example: Application component unavailable, unexpected exception.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function critical($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Runtime errors that do not require immediate action but should typically
-     * be logged and monitored.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function error($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Exceptional occurrences that are not errors.
-     *
-     * Example: Use of deprecated APIs, poor use of an API, undesirable things
-     * that are not necessarily wrong.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function warning($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Normal but significant events.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function notice($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Interesting events.
-     *
-     * Example: User logs in, SQL logs.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function info($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
-     * Detailed debug information.
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function debug($message, array $context = array())
-    {
-        $this->log(__FUNCTION__, $message, $context);
-    }
-
-    /**
      * Logs with an arbitrary level.
      *
      * @param mixed $level
@@ -163,6 +48,6 @@ class Logger implements LoggerInterface
 
     protected function createMessage($level, $message)
     {
-        return sprintf('[%s] - %s', $level, $message);
+        return sprintf('[%s] [%s] - %s', $level, date('Y-m-d H:i:s'), $message);
     }
 }

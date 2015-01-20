@@ -1,5 +1,45 @@
-<?php include __DIR__ . '/partials/top.php' ?>
+<?php include __DIR__ . '/partials/top.phtml' ?>
 
+<div class="container">
+    <h2 class="text-center">Users</h2>
+    <div class="text-right" style="margin-bottom: 20px;">
+        <a class="btn btn-success" href="#">
+            <i class="glyphicon glyphicon-plus"></i> New user
+        </a>
+    </div>
+    <?php if (empty($users)) : ?>
+        <div class="alert alert-warning text-center">
+            Users list is empty
+        </div>
+    <?php else : ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user) : ?>
+                    <tr>
+                        <td><?= $user->getId() ?></td>
+                        <td><?= $user->getName() ?></td>
+                        <td><?= $user->getPassword() ?></td>
+                        <td class="text-right">
+                            <a class="btn btn-primary btn-xs" href="#">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                            <a class="btn btn-danger btn-xs" href="#">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
 
-
-<?php include __DIR__ . '/partials/bottom.php' ?>
+<?php include __DIR__ . '/partials/bottom.phtml' ?>

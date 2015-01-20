@@ -19,12 +19,12 @@ class UserController extends AbstractController
 
     public function __construct(UserServiceInterface $userService)
     {
-
+        $this->userService = $userService;
     }
 
     public function listAction()
     {
-
+        $this->renderer->display('users_list.phtml', ['users' => $this->userService->getUsers()]);
     }
 
     public function createAction(User $user)
