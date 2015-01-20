@@ -27,18 +27,47 @@ class UserController extends AbstractController
         $this->renderer->display('users_list.phtml', ['users' => $this->userService->getUsers()]);
     }
 
-    public function createAction(User $user)
+    public function createAction()
     {
+        if ($this->request->isPost()) {
+            $user = new User();
+            $user->exchangeArray($this->request->post('user'));
+            $this->userService->createUser($user);
+            $this->response->redirect('/users/list');
+            return;
+        }
 
+        $this->renderer->display('users_create.phtml');
     }
 
-    public function updateAction(User $user)
+    public function updateAction($userId)
     {
+        $user = $this->userService->getUser($userId);
 
+        if ($this->request->isPost()) {
+            $user->exchangeArray($this->request->post('user'));
+            $this->userService->updateUser($user);
+            $this->response->redirect('/users/list');
+            return;
+        }
+
+        $this->renderer->display('users_create.phtml', [
+            'user' => $user
+        ]);
     }
 
-    public function deleteAction(User $user)
+    public function deleteAction($userId)
     {
+        $user = $this->userService->getUser($userId);
 
+        if ($this->request->isPost()) {
+            $this->userService->deleteUser($user);
+            $this->response->redirect('/users/list');
+            return;
+        }
+
+        $this->renderer->display('users_delete.phtml', [
+            'user' => $user
+        ]);
     }
 }

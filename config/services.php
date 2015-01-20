@@ -2,6 +2,7 @@
 use Acelaya\Controller\UserController;
 use Acelaya\Controller\UserControllerFactory;
 use Acelaya\Middleware\ParamConverterMiddleware;
+use Acelaya\Middleware\ParamConverterMiddlewareFactory;
 use Acelaya\Mvc\RendererAwareInitializer;
 use Acelaya\Mvc\RequestAwareInitializer;
 use Acelaya\Mvc\ResponseAwareInitializer;
@@ -22,9 +23,7 @@ return [
         ]
     ],
 
-    'invokables' => [
-        ParamConverterMiddleware::class => ParamConverterMiddleware::class
-    ],
+    'invokables' => [],
 
     'factories' => [
         UserController::class => UserControllerFactory::class,

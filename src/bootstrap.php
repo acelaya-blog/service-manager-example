@@ -14,9 +14,6 @@ $app->view()->set('app', $app);
 // Register application as a service
 $sm->setService('app', $app);
 
-// Add our middleware
-$app->add($sm->get(ParamConverterMiddleware::class));
-
 $app->get('/', function () use ($app) {
     $app->render('home.phtml');
 });
@@ -26,6 +23,15 @@ $app->group('/users', function () use ($app, $sm) {
 
     $app->get('/list', [$userController, 'listAction'])
         ->name('users-list');
+    $app->map('/create', [$userController, 'createAction'])
+        ->name('create-user')
+        ->via('GET', 'POST');
+    $app->map('/edit/:id', [$userController, 'updateAction'])
+        ->name('edit-user')
+        ->via('GET', 'POST');
+    $app->map('/delete/:id', [$userController, 'DeleteAction'])
+        ->name('delete-user')
+        ->via('GET', 'POST');
 });
 
 return $app;

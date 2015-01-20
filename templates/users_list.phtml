@@ -3,7 +3,7 @@
 <div class="container">
     <h2 class="text-center">Users</h2>
     <div class="text-right" style="margin-bottom: 20px;">
-        <a class="btn btn-success" href="#">
+        <a class="btn btn-success" href="<?= $app->urlFor('create-user') ?>">
             <i class="glyphicon glyphicon-plus"></i> New user
         </a>
     </div>
@@ -25,13 +25,13 @@
                 <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $user->getId() ?></td>
-                        <td><?= $user->getName() ?></td>
+                        <td><?= $user->getUsername() ?></td>
                         <td><?= $user->getPassword() ?></td>
                         <td class="text-right">
-                            <a class="btn btn-primary btn-xs" href="#">
+                            <a class="btn btn-primary btn-xs" href="<?= $app->urlFor('edit-user', ['id' => $user->getId()]) ?>">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
-                            <a class="btn btn-danger btn-xs" href="#">
+                            <a class="btn btn-danger btn-xs" href="<?= $app->urlFor('delete-user', ['id' => $user->getId()]) ?>">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </td>

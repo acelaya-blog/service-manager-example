@@ -1,0 +1,28 @@
+<?php include __DIR__ . '/partials/top.phtml' ?>
+
+<div class="container">
+    <h2 class="text-center"><?= isset($user) ? 'Update user' : 'Create user' ?></h2>
+    <form method="post" class="form-horizontal" style="margin-top: 40px;">
+        <input type="hidden" name="user[id]" value="<?= isset($user) ? $user->getId() : '' ?>">
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Username" name="user[username]"
+                       value="<?= isset($user) ? $user->getUsername() : '' ?>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="password" placeholder="Password" name="user[password]"
+                       value="<?= isset($user) ? $user->getPassword() : '' ?>">
+            </div>
+        </div>
+        <div class="text-right">
+            <a href="<?= $app->urlFor('users-list') ?>" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+
+<?php include __DIR__ . '/partials/bottom.phtml' ?>

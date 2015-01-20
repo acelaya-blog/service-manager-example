@@ -1,0 +1,14 @@
+<?php include __DIR__ . '/partials/top.phtml' ?>
+
+<div class="container">
+    <h2 class="text-center">Delete user</h2>
+    <form method="post">
+        <p>Are you sure you want to delete the user <b><?= $user->getUsername() ?></b>?</p>
+        <div class="text-right">
+            <a class="btn btn-default" href="<?= $app->urlFor('users-list') ?>">Cancel</a>
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </div>
+    </form>
+</div>
+
+<?php include __DIR__ . '/partials/bottom.phtml' ?>
