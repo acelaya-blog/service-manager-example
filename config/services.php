@@ -11,6 +11,7 @@ use Acelaya\Service\Logger;
 use Acelaya\Service\LoggerFactory;
 use Acelaya\Service\ServiceAbstractFactory;
 use Doctrine\ORM\EntityManager;
+use Slim\Slim;
 
 return [
 
@@ -21,7 +22,9 @@ return [
         ]
     ],
 
-    'invokables' => [],
+    'invokables' => [
+        Slim::class => Slim::class
+    ],
 
     'factories' => [
         UserController::class => UserControllerFactory::class,
@@ -41,7 +44,8 @@ return [
     ],
 
     'aliases' => [
-        'user_controller' => UserController::class
+        'user_controller' => UserController::class,
+        'app' => Slim::class,
     ]
 
 ];

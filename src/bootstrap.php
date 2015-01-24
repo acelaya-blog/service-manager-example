@@ -6,13 +6,12 @@ use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 
 $sm = new ServiceManager(new Config(include __DIR__ . '/../config/services.php'));
-$app = new Slim([
-    'templates.path' => __DIR__ . '/../templates'
-]);
+
+/** @var Slim $app */
+$app = $sm->get('app');
+$app->config('templates.path', __DIR__ . '/../templates');
 // Inject the app object in views
 $app->view()->set('app', $app);
-// Register application as a service
-$sm->setService('app', $app);
 
 $app->get('/', function () use ($app) {
     $app->render('home.phtml');
