@@ -9,9 +9,6 @@ $sm = new ServiceManager(new Config(include __DIR__ . '/../config/services.php')
 
 /** @var Slim $app */
 $app = $sm->get('app');
-$app->config('templates.path', __DIR__ . '/../templates');
-// Inject the app object in views
-$app->view()->set('app', $app);
 
 $app->get('/', function () use ($app) {
     $app->render('home.phtml');

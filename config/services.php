@@ -10,6 +10,7 @@ use Acelaya\ORM\EntityManagerOptionsFactory;
 use Acelaya\Service\Logger;
 use Acelaya\Service\LoggerFactory;
 use Acelaya\Service\ServiceAbstractFactory;
+use Acelaya\Slim\SlimDelegator;
 use Doctrine\ORM\EntityManager;
 use Slim\Slim;
 
@@ -41,6 +42,12 @@ return [
         RequestAwareInitializer::class,
         ResponseAwareInitializer::class,
         RendererAwareInitializer::class,
+    ],
+
+    'delegators' => [
+        Slim::class => [
+            SlimDelegator::class
+        ]
     ],
 
     'aliases' => [
