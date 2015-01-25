@@ -5,14 +5,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Zend\Stdlib\ArraySerializableInterface;
 
 /**
- * Class User
+ * Class Item
  * @author
  * @link
  *
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="items")
  */
-class User implements ArraySerializableInterface
+class Item implements ArraySerializableInterface
 {
     /**
      * @var int
@@ -25,12 +25,12 @@ class User implements ArraySerializableInterface
      * @var string
      * @ORM\Column(type="string")
      */
-    private $username;
+    private $title;
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $password;
+    private $description;
 
     /**
      * @return int
@@ -53,36 +53,36 @@ class User implements ArraySerializableInterface
     /**
      * @return string
      */
-    public function getPassword()
+    public function getDescription()
     {
-        return $this->password;
+        return $this->description;
     }
 
     /**
-     * @param string $password
+     * @param string $description
      * @return $this
      */
-    public function setPassword($password)
+    public function setDescription($description)
     {
-        $this->password = $password;
+        $this->description = $description;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getUsername()
+    public function getTitle()
     {
-        return $this->username;
+        return $this->title;
     }
 
     /**
-     * @param string $username
+     * @param string $title
      * @return $this
      */
-    public function setUsername($username)
+    public function setTitle($title)
     {
-        $this->username = $username;
+        $this->title = $title;
         return $this;
     }
 
@@ -95,8 +95,8 @@ class User implements ArraySerializableInterface
     public function exchangeArray(array $array)
     {
         $this->setId(isset($array['id']) ? $array['id'] : null);
-        $this->setUsername(isset($array['username']) ? $array['username'] : null);
-        $this->setPassword(isset($array['password']) ? $array['password'] : null);
+        $this->setTitle(isset($array['title']) ? $array['title'] : null);
+        $this->setDescription(isset($array['description']) ? $array['description'] : null);
     }
 
     /**
@@ -108,8 +108,8 @@ class User implements ArraySerializableInterface
     {
         return [
             'id' => $this->id,
-            'username' => $this->username,
-            'password' => $this->password
+            'title' => $this->title,
+            'description' => $this->description
         ];
     }
 }
