@@ -1,0 +1,28 @@
+<?php include __DIR__ . '/partials/top.phtml' ?>
+
+<div class="container">
+    <h2 class="text-center"><?= isset($item) ? 'Update item' : 'Create item' ?></h2>
+    <form method="post" class="form-horizontal" style="margin-top: 40px;">
+        <input type="hidden" name="item[id]" value="<?= isset($item) ? $item->getId() : '' ?>">
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="title" placeholder="Title" name="item[title]"
+                       value="<?= isset($item) ? $item->getTitle() : '' ?>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="password" placeholder="Description" name="item[description]"
+                       value="<?= isset($item) ? $item->getDescription() : '' ?>">
+            </div>
+        </div>
+        <div class="text-right">
+            <a href="<?= $app->urlFor('items-list') ?>" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+
+<?php include __DIR__ . '/partials/bottom.phtml' ?>
