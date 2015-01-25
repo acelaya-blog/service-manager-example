@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\Slim;
 
+use Acelaya\SlimContainerSm\Container;
 use Slim\Slim;
 use Zend\ServiceManager\DelegatorFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -26,6 +27,16 @@ class SlimDelegator implements DelegatorFactoryInterface
         $app->config('templates.path', __DIR__ . '/../../templates');
         // Inject the app object in views
         $app->view()->set('app', $app);
+
+        // Set SlimController config
+        $app->config('controller.class_prefix', '');
+        $app->config('controller.class_suffix', '');
+        $app->config('controller.method_suffix', 'Action');
+        $app->config('controller.template_suffix', '');
+
+//        $container = new Container($serviceLocator);
+//        $container->consumeSlimContainer($app->container);
+//        $app->container = $container;
 
         return $app;
     }

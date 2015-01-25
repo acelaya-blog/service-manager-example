@@ -13,6 +13,7 @@ use Acelaya\Service\ServiceAbstractFactory;
 use Acelaya\Slim\SlimDelegator;
 use Doctrine\ORM\EntityManager;
 use Slim\Slim;
+use SlimController\Slim as SlimController;
 
 return [
 
@@ -24,7 +25,7 @@ return [
     ],
 
     'invokables' => [
-        Slim::class => Slim::class
+        Slim::class => SlimController::class
     ],
 
     'factories' => [
@@ -53,6 +54,7 @@ return [
     'aliases' => [
         'user_controller' => UserController::class,
         'app' => Slim::class,
+        SlimController::class => Slim::class,
     ]
 
 ];
