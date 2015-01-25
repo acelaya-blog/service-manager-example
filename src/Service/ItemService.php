@@ -3,15 +3,17 @@ namespace Acelaya\Service;
 
 use Acelaya\Entity\Item;
 
-class ItemService implements ItemServiceInterface
+class ItemService extends AbstractService implements ItemServiceInterface
 {
-
     /**
      * @return Item[]
      */
     public function getItems()
     {
-        // TODO: Implement getItems() method.
+        $this->logger->info('Fetching items...');
+        $items = $this->objectmanager->getRepository(Item::class)->findAll();
+        $this->logger->debug(sprintf('Found %s items', count($items)));
+        return $items;
     }
 
     /**
@@ -20,7 +22,10 @@ class ItemService implements ItemServiceInterface
      */
     public function getItem($itemId)
     {
-        // TODO: Implement getItem() method.
+        $this->logger->info(sprintf('Fetching item with id %s...', $itemId));
+        $item = $this->objectmanager->find(Item::class, $itemId);
+        $this->logger->debug(empty($item) ? 'Item not found' : 'Item found');
+        return $item;
     }
 
     /**
@@ -29,7 +34,9 @@ class ItemService implements ItemServiceInterface
      */
     public function createItem(Item $item)
     {
-        // TODO: Implement createItem() method.
+        $this->logger->info('Creating new item...');
+        $this->objectmanager->persist($item);
+        $this->objectmanager->flush();
     }
 
     /**
@@ -38,7 +45,9 @@ class ItemService implements ItemServiceInterface
      */
     public function updateItem(Item $item)
     {
-        // TODO: Implement updateItem() method.
+        $this->logger->info(sprintf('Updating item with id %s...', $item->getId()));
+        $this->objectmanager->persist($item);
+        $this->objectmanager->flush();
     }
 
     /**
@@ -47,6 +56,11 @@ class ItemService implements ItemServiceInterface
      */
     public function deleteItem($item)
     {
-        // TODO: Implement deleteItem() method.
+        if (! $item instanceof Item) {
+            $item = $this->getItem($item);
+        }
+        $this->logger->info(sprintf('Deleting item with id %s...', $item->getId()));
+        $this->objectmanager->remove($item);
+        $this->objectmanager->flush();
     }
 }
