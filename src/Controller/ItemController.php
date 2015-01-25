@@ -37,11 +37,32 @@ class ItemController extends AbstractController
 
     public function updateAction($itemId)
     {
+        $item = $this->itemService->getItem($itemId);
 
+        if ($this->request->isPost()) {
+            $item->exchangeArray($this->request->post('item'));
+            $this->itemService->updateItem($item);
+            $this->response->redirect('/items/list');
+            return;
+        }
+
+        $this->renderer->display('items_create.phtml', [
+            'item' => $item
+        ]);
     }
 
     public function deleteAction($itemId)
     {
+        $item = $this->itemService->getItem($itemId);
 
+        if ($this->request->isPost()) {
+            $this->itemService->deleteItem($item);
+            $this->response->redirect('/items/list');
+            return;
+        }
+
+        $this->renderer->display('items_delete.phtml', [
+            'item' => $item
+        ]);
     }
 }
