@@ -2,9 +2,17 @@
 
 <div class="container">
     <h2 class="text-center">Hello World!</h2>
-    <a href="<?php echo $app->urlFor('users-list') ?>">
-        <i class="glyphicon glyphicon-user"></i> Users
-    </a>
+    <br>
+    <div class="list-group">
+        <a href="<?php echo $app->urlFor('users-list') ?>" class="list-group-item">
+            <i class="glyphicon glyphicon-user"></i> Users
+            <i class="glyphicon glyphicon-chevron-right pull-right"></i>
+        </a>
+        <a href="<?php echo $app->urlFor('users-list') ?>" class="list-group-item">
+            <i class="glyphicon glyphicon-certificate"></i> Items
+            <i class="glyphicon glyphicon-chevron-right pull-right"></i>
+        </a>
+    </div>
 </div>
 
 <?php include __DIR__ . '/partials/bottom.phtml' ?>
