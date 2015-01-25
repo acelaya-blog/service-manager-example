@@ -14,7 +14,7 @@ $app = $sm->get('app');
 
 $app->get('/', function () use ($app) {
     $app->render('home.phtml');
-});
+})->name('home');
 $app->group('/users', function () use ($app, $sm) {
     /** @var UserController $userController */
     $userController = $sm->get('user_controller');
