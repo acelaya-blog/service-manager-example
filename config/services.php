@@ -1,4 +1,6 @@
 <?php
+use Acelaya\Controller\ItemController;
+use Acelaya\Controller\ItemControllerFactory;
 use Acelaya\Controller\UserController;
 use Acelaya\Controller\UserControllerFactory;
 use Acelaya\Mvc\RendererAwareInitializer;
@@ -29,7 +31,11 @@ return [
     ],
 
     'factories' => [
+        // Controllers
         UserController::class => UserControllerFactory::class,
+        ItemController::class => ItemControllerFactory::class,
+
+        // Others
         Logger::class => LoggerFactory::class,
         EntityManagerOptions::class => EntityManagerOptionsFactory::class,
         EntityManager::class => EntityManagerFactory::class
@@ -52,7 +58,6 @@ return [
     ],
 
     'aliases' => [
-        'user_controller' => UserController::class,
         'app' => Slim::class,
         SlimController::class => Slim::class,
     ]
