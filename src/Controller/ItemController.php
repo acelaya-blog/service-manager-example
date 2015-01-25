@@ -18,7 +18,7 @@ class ItemController extends AbstractController
 
     public function listAction()
     {
-
+        $this->renderer->display('items_list.phtml', ['items' => $this->itemService->getItems()]);
     }
 
     public function createAction()

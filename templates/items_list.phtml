@@ -1,0 +1,48 @@
+<?php include __DIR__ . '/partials/top.phtml' ?>
+
+<div class="container">
+    <h2 class="text-center">Items</h2>
+    <div class="text-right" style="margin-bottom: 20px;">
+        <a class="pull-left" href="<?= $app->urlFor('home') ?>">
+            <i class="glyphicon glyphicon-arrow-left"></i> Home
+        </a>
+        <a class="btn btn-success" href="<?= $app->urlFor('create-item') ?>">
+            <i class="glyphicon glyphicon-plus"></i> New Item
+        </a>
+    </div>
+    <?php if (empty($items)) : ?>
+        <div class="alert alert-warning text-center">
+            Items list is empty
+        </div>
+    <?php else : ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($items as $item) : ?>
+                    <tr>
+                        <td><?= $item->getId() ?></td>
+                        <td><?= $item->getTitle() ?></td>
+                        <td><?= $item->getDescription() ?></td>
+                        <td class="text-right">
+                            <a class="btn btn-primary btn-xs" href="<?= $app->urlFor('edit-item', ['id' => $item->getId()]) ?>">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                            <a class="btn btn-danger btn-xs" href="<?= $app->urlFor('delete-item', ['id' => $item->getId()]) ?>">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+
+<?php include __DIR__ . '/partials/bottom.phtml' ?>
