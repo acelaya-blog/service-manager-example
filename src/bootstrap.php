@@ -17,64 +17,34 @@ $app->get('/', function () use ($app) {
 
 // Users pages
 $app->group('/users', function () use ($app, $sm) {
-    /** @var UserController $userController */
-    $userController = $sm->get(UserController::class);
-
-    $app->get('/list', [$userController, 'listAction'])
-        ->name('users-list');
-    $app->map('/create', [$userController, 'createAction'])
+    $app->addControllerRoute('/list', UserController::class . ':list')
+        ->name('users-list')
+        ->via('GET');
+    $app->addControllerRoute('/create', UserController::class . ':create')
         ->name('create-user')
         ->via('GET', 'POST');
-    $app->map('/edit/:id', [$userController, 'updateAction'])
+    $app->addControllerRoute('/edit/:id', UserController::class . ':update')
         ->name('edit-user')
         ->via('GET', 'POST');
-    $app->map('/delete/:id', [$userController, 'deleteAction'])
+    $app->addControllerRoute('/delete/:id', UserController::class . ':delete')
         ->name('delete-user')
         ->via('GET', 'POST');
-
-//    $app->addControllerRoute('/list', UserController::class . ':list')
-//        ->name('users-list')
-//        ->via('GET');
-//    $app->addControllerRoute('/create', UserController::class . ':create')
-//        ->name('create-user')
-//        ->via('GET', 'POST');
-//    $app->addControllerRoute('/edit/:id', UserController::class . ':update')
-//        ->name('edit-user')
-//        ->via('GET', 'POST');
-//    $app->addControllerRoute('/delete/:id', UserController::class . ':delete')
-//        ->name('delete-user')
-//        ->via('GET', 'POST');
 });
 
 // Items pages
 $app->group('/items', function () use ($app, $sm) {
-    /** @var ItemController $itemController */
-    $itemController = $sm->get(ItemController::class);
-
-    $app->get('/list', [$itemController, 'listAction'])
-        ->name('items-list');
-    $app->map('/create', [$itemController, 'createAction'])
+    $app->addControllerRoute('/list', ItemController::class . ':list')
+        ->name('items-list')
+        ->via('GET');
+    $app->addControllerRoute('/create', ItemController::class . ':create')
         ->name('create-item')
         ->via('GET', 'POST');
-    $app->map('/edit/:id', [$itemController, 'updateAction'])
+    $app->addControllerRoute('/edit/:id', ItemController::class . ':update')
         ->name('edit-item')
         ->via('GET', 'POST');
-    $app->map('/delete/:id', [$itemController, 'deleteAction'])
+    $app->addControllerRoute('/delete/:id', ItemController::class . ':delete')
         ->name('delete-item')
         ->via('GET', 'POST');
-
-//    $app->addControllerRoute('/list', ItemController::class . ':list')
-//        ->name('items-list')
-//        ->via('GET');
-//    $app->addControllerRoute('/create', ItemController::class . ':create')
-//        ->name('create-item')
-//        ->via('GET', 'POST');
-//    $app->addControllerRoute('/edit/:id', ItemController::class . ':update')
-//        ->name('edit-item')
-//        ->via('GET', 'POST');
-//    $app->addControllerRoute('/delete/:id', ItemController::class . ':delete')
-//        ->name('delete-item')
-//        ->via('GET', 'POST');
 });
 
 return $app;

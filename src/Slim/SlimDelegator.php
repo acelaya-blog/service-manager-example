@@ -34,9 +34,9 @@ class SlimDelegator implements DelegatorFactoryInterface
         $app->config('controller.method_suffix', 'Action');
         $app->config('controller.template_suffix', '');
 
-//        $container = new Container($serviceLocator);
-//        $container->consumeSlimContainer($app->container);
-//        $app->container = $container;
+        $container = new Container($serviceLocator);
+        $container->consumeSlimContainer($app->container);
+        $app->container = $container;
 
         return $app;
     }
