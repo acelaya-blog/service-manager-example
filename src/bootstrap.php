@@ -30,16 +30,16 @@ $app->addControllerRoute('/users/delete/:id', UserController::class . ':delete')
     ->via('GET', 'POST');
 
 // Items pages
-$app->addControllerRoute('/users/list', ItemController::class . ':list')
+$app->addControllerRoute('/items/list', ItemController::class . ':list')
     ->name('items-list')
     ->via('GET');
-$app->addControllerRoute('/users/create', ItemController::class . ':create')
+$app->addControllerRoute('/items/create', ItemController::class . ':create')
     ->name('create-item')
     ->via('GET', 'POST');
-$app->addControllerRoute('/users/edit/:id', ItemController::class . ':update')
+$app->addControllerRoute('/items/edit/:id', ItemController::class . ':update')
     ->name('edit-item')
     ->via('GET', 'POST');
-$app->addControllerRoute('/users/delete/:id', ItemController::class . ':delete')
+$app->addControllerRoute('/items/delete/:id', ItemController::class . ':delete')
     ->name('delete-item')
     ->via('GET', 'POST');
 
