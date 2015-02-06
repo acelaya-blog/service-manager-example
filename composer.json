@@ -22,5 +22,13 @@
         "psr-4": {
             "Acelaya\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Acelaya\\Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
     }
 }
