@@ -19,7 +19,7 @@ class LoggerFactory implements FactoryInterface
         $logConfig = $serviceLocator->get('Config')['log_config'];
 
         $filesystem = null;
-        // TODO Add support for other adapters, maybe by using an AbstractFactory
+        // TODO Add support for other adapters
         if ($logConfig['adapter'] === Local::class) {
             $adapter = new Local($logConfig['dir']);
             $filesystem = new Filesystem($adapter);
