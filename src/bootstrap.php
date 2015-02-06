@@ -16,35 +16,31 @@ $app->get('/', function () use ($app) {
 })->name('home');
 
 // Users pages
-$app->group('/users', function () use ($app, $sm) {
-    $app->addControllerRoute('/list', UserController::class . ':list')
-        ->name('users-list')
-        ->via('GET');
-    $app->addControllerRoute('/create', UserController::class . ':create')
-        ->name('create-user')
-        ->via('GET', 'POST');
-    $app->addControllerRoute('/edit/:id', UserController::class . ':update')
-        ->name('edit-user')
-        ->via('GET', 'POST');
-    $app->addControllerRoute('/delete/:id', UserController::class . ':delete')
-        ->name('delete-user')
-        ->via('GET', 'POST');
-});
+$app->addControllerRoute('/users/list', UserController::class . ':list')
+    ->name('users-list')
+    ->via('GET');
+$app->addControllerRoute('/users/create', UserController::class . ':create')
+    ->name('create-user')
+    ->via('GET', 'POST');
+$app->addControllerRoute('/users/edit/:id', UserController::class . ':update')
+    ->name('edit-user')
+    ->via('GET', 'POST');
+$app->addControllerRoute('/users/delete/:id', UserController::class . ':delete')
+    ->name('delete-user')
+    ->via('GET', 'POST');
 
 // Items pages
-$app->group('/items', function () use ($app, $sm) {
-    $app->addControllerRoute('/list', ItemController::class . ':list')
-        ->name('items-list')
-        ->via('GET');
-    $app->addControllerRoute('/create', ItemController::class . ':create')
-        ->name('create-item')
-        ->via('GET', 'POST');
-    $app->addControllerRoute('/edit/:id', ItemController::class . ':update')
-        ->name('edit-item')
-        ->via('GET', 'POST');
-    $app->addControllerRoute('/delete/:id', ItemController::class . ':delete')
-        ->name('delete-item')
-        ->via('GET', 'POST');
-});
+$app->addControllerRoute('/users/list', ItemController::class . ':list')
+    ->name('items-list')
+    ->via('GET');
+$app->addControllerRoute('/users/create', ItemController::class . ':create')
+    ->name('create-item')
+    ->via('GET', 'POST');
+$app->addControllerRoute('/users/edit/:id', ItemController::class . ':update')
+    ->name('edit-item')
+    ->via('GET', 'POST');
+$app->addControllerRoute('/users/delete/:id', ItemController::class . ':delete')
+    ->name('delete-item')
+    ->via('GET', 'POST');
 
 return $app;
